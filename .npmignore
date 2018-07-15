@@ -1,0 +1,11 @@
+node_modules
+.vscode
+logs/*
+build
+src
+tests
+gulpfile.ts
+tsconfig.json
+tslint.json
+.editorconfig
+npm-debug.log
