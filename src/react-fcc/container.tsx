@@ -50,7 +50,7 @@ export function container<State, Actions extends ActionsParameter<State>, Props 
         )
       }
 
-      mapAction = (action: Action<State>, args: any, name: keyof Actions) => {
+      mapAction = (action: Action<State>, args: any, name: keyof Actions | 'componentDidMount' | 'componentDidUpdate') => {
         this.setState((state: State, props: TOuterProps) => {
           const container = {
             state,
@@ -70,11 +70,11 @@ export function container<State, Actions extends ActionsParameter<State>, Props 
 
       mapActions = (actions: Actions) => {
         this.componentDidMount = options.onMount
-          ? () => this.mapAction(options.onMount!, [], options.onMount!.name || 'componentDidMount')
+          ? () => this.mapAction(options.onMount!, [], 'componentDidMount')
           : noop
         this.componentDidUpdate = options.onUpdate
           ? (prevProps: TOuterProps, prevState: State) =>
-              this.mapAction(options.onUpdate!, [prevProps, prevState], options.onUpdate!.name || 'componentDidUpdate')
+              this.mapAction(options.onUpdate!, [prevProps, prevState], 'componentDidUpdate')
           : noop
 
         return Object.entries(actions).reduce<MappedActions<Actions>>(

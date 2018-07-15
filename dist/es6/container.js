@@ -26,10 +26,10 @@ export function container(initialState, actions, options = {}) {
                     };
                     this.mapActions = (actions) => {
                         this.componentDidMount = options.onMount
-                            ? () => this.mapAction(options.onMount, [], options.onMount.name || 'componentDidMount')
+                            ? () => this.mapAction(options.onMount, [], 'componentDidMount')
                             : noop;
                         this.componentDidUpdate = options.onUpdate
-                            ? (prevProps, prevState) => this.mapAction(options.onUpdate, [prevProps, prevState], options.onUpdate.name || 'componentDidUpdate')
+                            ? (prevProps, prevState) => this.mapAction(options.onUpdate, [prevProps, prevState], 'componentDidUpdate')
                             : noop;
                         return Object.entries(actions).reduce((mappedActions, entry) => {
                             const name = entry[0];

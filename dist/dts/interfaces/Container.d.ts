@@ -20,8 +20,12 @@ export interface ActionFactory<State, Actions extends MappedActions<ActionsParam
 export declare type ActionsParameter<State> = {
     [name: string]: Action<State>;
 };
+export declare type LifeCycleActions = {
+    componentDidMount: any;
+    componentDidUpdate: any;
+};
 export declare type ActionFactoriesParameter<State, Actions extends MappedActions<ActionsParameter<State>>, OuterProps> = {
-    [name in keyof Actions]: ActionFactory<State, Actions, OuterProps>;
+    [name in keyof (Actions & LifeCycleActions)]: ActionFactory<State, Actions, OuterProps>;
 };
 export declare type Omit<T, K extends keyof T> = Pick<T, ({
     [P in keyof T]: P;

@@ -168,3 +168,23 @@ test('actions can have other actions injected', done => {
         done();
     }, 110);
 });
+test('lifecycle actions can have other actions injected', done => {
+    const Container = container({ text: 'initial', loading: false }, {
+        updateText,
+        fetchText,
+    }, {
+        onMount: fetchText,
+        injects: {
+            componentDidMount: actions => partial(fetchText, [actions.updateText]),
+        },
+    })(FetchingTextComponent);
+    const component = renderer.create(React.createElement(Container, null));
+    const tree = component.toTree();
+    expect(tree).not.toBeNull();
+    const textComponent = component.root.findByType(FetchingTextComponent);
+    expect(textComponent.props.loading).toBe(true);
+    setTimeout(() => {
+        expect(textComponent.props.text).toBe('fetched');
+        done();
+    }, 110);
+});

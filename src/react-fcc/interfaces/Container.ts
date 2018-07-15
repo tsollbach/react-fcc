@@ -21,8 +21,13 @@ export type ActionsParameter<State> = {
   [name: string]: Action<State>
 }
 
+export type LifeCycleActions = {
+  componentDidMount: any
+  componentDidUpdate: any
+}
+
 export type ActionFactoriesParameter<State, Actions extends MappedActions<ActionsParameter<State>>, OuterProps> = {
-  [name in keyof Actions]: ActionFactory<State, Actions, OuterProps>
+  [name in keyof (Actions & LifeCycleActions)]: ActionFactory<State, Actions, OuterProps>
 }
 
 
