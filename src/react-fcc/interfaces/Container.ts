@@ -21,7 +21,7 @@ export type ActionsParameter<State> = {
   [name: string]: Action<State>
 }
 
-type LifeCycleActions = {
+export type LifeCycleActions = {
   componentDidMount: any
   componentDidUpdate: any
 }

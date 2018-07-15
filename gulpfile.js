@@ -13,7 +13,7 @@ const { uglify } = require('rollup-plugin-uglify')
 
 const env = process.env.NODE_ENV || 'development'
 
-const name = 'react-fpc'
+const name = 'react-fcc'
 const src = 'src'
 const dest = env !== 'production' ? 'build' : 'dist'
 

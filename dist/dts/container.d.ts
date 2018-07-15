@@ -12,7 +12,7 @@ export declare function container<State, Actions extends ActionsParameter<State>
             [x: number]: never;
         })[keyof P]> & Props>;
         state: State;
-        mapAction: (action: Action<State>, args: any, name: keyof Actions) => void;
+        mapAction: (action: Action<State>, args: any, name: "componentDidMount" | "componentDidUpdate" | keyof Actions) => void;
         mapActions: (actions: Actions) => MappedActions<Actions>;
         render(): JSX.Element;
         setState<K extends keyof State>(state: State | ((prevState: Readonly<State>, props: Pick<P, ({ [P in keyof P]: P; } & { [P in Extract<keyof Actions, keyof P> | Extract<keyof TStateProps, keyof P>]: never; } & {
