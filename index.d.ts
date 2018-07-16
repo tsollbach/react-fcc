@@ -1,2 +1,2 @@
-export { container } from './src/react-fpc'
-export { context } from './src/react-fpc'
+export { container } from './dist/dts'
+export { context } from './dist/dts'
